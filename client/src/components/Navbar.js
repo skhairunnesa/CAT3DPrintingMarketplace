@@ -5,7 +5,7 @@
 
 import React from "react";
 import { Nav, NavLink, NavMenu, SmallNavMenu, SmallNavLink, SearchContainer, SearchInput, SearchButton } from "./NavbarElements";
-
+import caterpillarLogo from '../assets/caterpillar_logo.png'
 
 export const DefaultNavBar = () => {
     return (
@@ -17,7 +17,7 @@ export const DefaultNavBar = () => {
                 <NavLink to="/houses" activeStyle>
                     Houses
                 </NavLink>
-                <NavLink to="/structures" activeStyle>
+                <NavLink to="/catalog" activeStyle>
                     Structures
                 </NavLink>
                 <NavLink to="/brands" activeStyle>
@@ -48,7 +48,7 @@ export const BuyerNavBar = () => {
                 <NavLink to="/houses" activeStyle>
                     Houses
                 </NavLink>
-                <NavLink to="/structures" activeStyle>
+                <NavLink to="/catalog" activeStyle>
                     Structures
                 </NavLink>
                 <NavLink to="/brands" activeStyle>
@@ -138,8 +138,14 @@ export const SmallerDefaultNavBar = () => {
                 <SmallNavLink to="/login" activeStyle>
                     Login
                 </SmallNavLink>
+                <SmallNavLink to="/dummyPages/myfavorites" activeStyle>
+                    My Favorites
+                </SmallNavLink>
                 <SmallNavLink to="/location-editor" activeStyle>
                     Location Editor
+                </SmallNavLink>
+                <SmallNavLink to="/message-inbox" activeStyle>
+                    Message Inbox
                 </SmallNavLink>
             </SmallNavMenu>
         </smallNav>
@@ -173,9 +179,6 @@ export const SmallerBuyerNavBar = () => {
                 </SmallNavLink>
                 <SmallNavLink to="/dummyPages/myfavorites" activeStyle>
                     My Favorites
-                </SmallNavLink>
-                <SmallNavLink to="/dummyPages/messagesinbox" activeStyle>
-                    Message Inbox
                 </SmallNavLink>
                 <SmallNavLink to="/mycart" activeStyle>
                     <img src={require("../assets/Cart.png")} alt="Cart" height="30"></img>

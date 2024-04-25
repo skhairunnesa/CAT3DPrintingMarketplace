@@ -36,6 +36,8 @@ import EditPage from './pages/base-edit-overview.js';
 import SellerPage from './pages/SellerOverview.js';
 import { CreateAccountForm, CreateBuyerForm, CreateSellerForm, LoginForm, LoginScreenBase, Template } from './Login';
 import './index.css';
+import Product from "./pages/Product";
+import Catalog from "./pages/catalog";
 
 function App() {
     const [sellers, setSellers] = useState([]);
@@ -164,6 +166,13 @@ function App() {
                     <Route
                         path="/dummyPages/myAccount" //Path for it to be added too
                         element={<SellerPageFramework component={<MyAccount />} />} />
+
+                    <Route
+                         path="/product/:productId"
+                         element={<DefaultPageFramework component={<Product />} />} />
+                    <Route
+                         path="/catalog"
+                         element={<DefaultPageFramework component={<Catalog />} />} />
                     {/**must also include small navbar routing like location editor and message inbox */}
 
                     {/** ROUTING FOR DESIGNER NAVBAR AND SMALLNAVBAR */}
@@ -192,32 +201,6 @@ function App() {
                     <Route path="/sellerPage" element={<SellerPageFramework component={<SellerPage />} />} />
                 </Routes>
             </div>
-            <Link to="/edit-overview" className="btn btn-primary"><button>Edit Page</button></Link>
-            <Link to="/sellerPage" className="btn btn-primary"><button>Seller Page</button></Link>
-            {/*
-            <div className="w-100 vh-100 d-flex justify-content-center align-items-center">
-                <div className="w-50">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone Number</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {sellers.map(seller => (
-                                <tr key={seller.id}>
-                                    <td>{seller.seller_name}</td>
-                                    <td>{seller.seller_email}</td>
-                                    <td>{seller.seller_phoneNumber}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            */}
         </Router>
     );
 }
