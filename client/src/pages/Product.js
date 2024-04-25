@@ -74,7 +74,7 @@ const Product = () => {
      return (
           <div>
                <p className="imageGallery">
-                    <ReactImageGallery items={images} autoPlay={true} showFullscreenButton={true} showPlayButton={false}></ReactImageGallery>
+                    <ReactImageGallery items={images} autoPlay={false} showFullscreenButton={true} showPlayButton={false}></ReactImageGallery>
                     </p>
                     <h2 id="h2">Available in your area</h2>
                     <p id="pro_id">Product Id: {{ productId }.productId}</p>  
