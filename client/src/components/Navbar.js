@@ -180,6 +180,9 @@ export const SmallerBuyerNavBar = () => {
                 <SmallNavLink to="/dummyPages/myfavorites" activeStyle>
                     My Favorites
                 </SmallNavLink>
+                <SmallNavLink to="/dummyPages/messagesinbox" activeStyle>
+                    Message Inbox
+                </SmallNavLink>
                 <SmallNavLink to="/mycart" activeStyle>
                     <img src={require("../assets/Cart.png")} alt="Cart" height="30"></img>
                 </SmallNavLink>
