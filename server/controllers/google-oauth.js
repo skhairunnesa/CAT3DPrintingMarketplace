@@ -1,4 +1,4 @@
-const client_id = process.env.GOOGLE_CLIENT_ID;
+const client_id = process.env.GCID;
 const jwtDecode = require("jwt-decode");
 const sessionAuth = require('./session-control');
 
