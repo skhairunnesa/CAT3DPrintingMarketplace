@@ -1,0 +1,49 @@
+.sellerLandingPage {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1500px;
+  }
+  .header{
+    position: relative;
+  }
+  .bottomleft {
+    position: absolute;
+    bottom: 20px;
+    left: 110px;
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .headerimage { 
+    width: 60%;
+    display: block;
+    margin-left: 60px;
+    opacity: 0.5;
+    z-index: -1;
+    max-height: 400px;
+    border-radius: 30px;
+    padding: 15px;
+  }
+
+
+  li{
+    float: left;
+  }
+
+  ul{
+    list-style-type: none;
+    overflow: hidden;
+  }
+
+
+
+    
+
+
+
+
+
+
+  

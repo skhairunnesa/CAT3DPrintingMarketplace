@@ -1,0 +1,35 @@
+.google {
+    position: relative;
+    width: 0.75rem;
+    height: 0.75rem;
+    padding: 0;
+    border-top: 0.25rem solid #ea4335; /* 100px to 0.25rem */
+    border-right: 0.25rem solid #4285f4; /* 100px to 0.25rem */
+    border-bottom: 0.25rem solid #34a853; /* 100px to 0.25rem */
+    border-left: 0.25rem solid #fbbc05; /* 100px to 0.25rem */
+    border-radius: 50%;
+    background-color: transparent;
+    margin-right: .5rem;
+}
+
+.google::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -0.237rem; /* -95px to -0.237rem */
+    transform: translateY(-50%);
+    width: 0.612rem; /* 245px to 0.612rem */
+    height: 0.25rem; /* 100px to 0.25rem */
+    background-color: #4285f4;
+}
+
+.google::after {
+    content: "";
+    position: absolute;
+    top: -0.25rem; /* -100px to -0.25rem */
+    right: -0.25rem; /* -100px to -0.25rem */
+    width: 0;
+    height: 0;
+    border-top: 0.5rem solid transparent; /* 200px to 0.5rem */
+    border-right: 0.5rem solid azure; /* 200px to 0.5rem */
+}

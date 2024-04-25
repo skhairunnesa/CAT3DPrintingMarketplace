@@ -1,0 +1,61 @@
+/* Author: Isa Luluquisin
+// Description: Script contains formatting of the different carousel components.
+*/
+
+.carousel {
+    height: 300px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: block;
+    padding: 20px;
+    border-radius: 30px;
+  }
+
+  .carouselCard {
+    display: inline-block;
+    position: relative;
+    align-items: center;
+  }
+
+  .carouselImage {
+    width: 1600px;
+    height: 300px;
+    opacity: 0.5;
+    z-index: -1;
+    border-radius: 30px;
+  }
+
+  .carouselText {
+    position: absolute;
+    z-index: 1;
+    bottom: 30px;
+    left: 10px;
+    font-size: 40px;
+    font-weight: bold;
+    padding: 10px;
+  }
+
+  .carouselTrack {
+    width: 200%;
+    height: 300px;
+    display: flex;
+    position: absolute;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    animation: slide 50s linear infinite;
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes slide {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -450%;
+    }
+  }
