@@ -4,12 +4,13 @@
 
 .carousel {
     height: 300px;
-    width: 100%;
+    width:99%;
     overflow: hidden;
     position: relative;
     display: block;
-    padding: 20px;
+    padding: 5px;
     border-radius: 30px;
+    align-items: center;
   }
 
   .carouselCard {
