@@ -1,0 +1,53 @@
+/* image section */
+.image-mid-section {
+    position: relative;
+    width: 100%;
+  }
+  
+  .image-collection {
+    text-align: center;
+  }
+  
+  .image-item {
+    display: inline-block;
+    position: relative; /* Ensure proper positioning of overlay */
+    margin: 50px;
+  }
+  
+  .overlay {
+    position: relative;
+    bottom: -100%; /* Initially, place overlay below the image */
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    transition: bottom 0.3s ease; /* Transition for smooth slide-in effect */
+  }
+  
+  .image-item:hover .overlay {
+    bottom: 0; /* Slide the overlay in when image is hovered */
+  }
+  
+  .overlay img {
+    display: block;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    transition: opacity 0.3s ease; /* Optional: add a transition for image opacity */
+  }
+  
+  .image-item:hover .overlay img {
+    opacity: 0.7; /* Reduce image opacity when overlay is active */
+  }
+  
+  .learn-more-text {
+    position: absolute;
+    bottom: 10%;
+    left: 0%;
+    right: 0%;
+    color: white;
+    text-align: center;
+    padding: 5px;
+  }

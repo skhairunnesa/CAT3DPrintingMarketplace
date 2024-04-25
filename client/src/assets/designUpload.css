@@ -1,0 +1,23 @@
+.designUploadContainer{
+    display: block;
+    position: relative;
+  }
+  
+  .designImage {
+    width: 99%;
+    height: 150px;
+    opacity: 0.5;
+    z-index: -1;
+    border-radius: 30px;
+    padding: 5px;
+    padding-bottom: 0px;
+    align-items: center;
+  }
+  
+  .designText {
+    position: absolute;
+    bottom: 10px;
+    left: 50px;
+    font-size: 25px;
+    font-weight: bold;
+  } 

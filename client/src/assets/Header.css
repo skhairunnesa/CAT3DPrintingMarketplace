@@ -1,0 +1,30 @@
+.header-section {
+    display: flex;
+    justify-content: flex-end; /* Align content to the right */
+    align-items: center; /* Center content vertically */
+    padding: 20px; /* Add padding for better spacing */
+  }
+  
+  .header-content {
+    margin-right: 20px; /* Adjust margin to create space between image and text */
+  }
+  
+  .seller-img {
+    width: 150px; /* Adjust width of the image */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  .header-card {
+    font-family: 'lato', sans-serif;
+  }
+  
+  .header-heading {
+    font-size: 24px;
+    color: #ffc500;
+    margin-bottom: 10px; /* Add margin to create space between text blocks */
+  }
+  
+  .header-text {
+    opacity: 0.7;
+    margin-bottom: 5px; /* Add margin to create space between text blocks */
+  }

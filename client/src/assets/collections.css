@@ -4,12 +4,13 @@
 }
 
 .collectionsPhoto {
-  width: 100%;
+  width: 99%;
   height: 300px;
   opacity: 0.5;
   z-index: -1;
   border-radius: 50px;
-  padding: 30px;
+  padding: 5px;
+  align-items: center;
 }
 
 .collectionsText {
