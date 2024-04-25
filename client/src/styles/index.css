@@ -11,3 +11,148 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+     --bg: #242526;
+     --bg-accent: #484a4d;
+     --text-color: #000000;
+     --nav-size: 60px;
+     --border: 1px solid #474a4d;
+     --speed: 500ms;
+ }
+ 
+ ul {
+     list-style: none;
+     margin: 0;
+     padding: 0;
+ }
+ 
+ a {
+     color: var(--text-color);
+     text-decoration: none;
+ }
+ 
+ .dropdown-menu ul li{
+     padding: 10px 0;
+     border-top: 1px solid rgba(0, 0, 0, 0.05);
+ }
+ 
+ .dropdown-menu ul li:hover a{
+     color: rgb(212, 33, 0);
+     cursor: pointer;
+ }
+ 
+ .dropdownItem{
+     display: flex;
+     margin: 10px auto;
+ }
+ 
+ .dropdownItem a{
+     max-width: 100px;
+     margin-left: 10px;
+     transition: var(--speed);
+ }
+ 
+ .dropdownItemButton{
+      background: none;
+      border: none;
+      color: black;
+ }
+ 
+ .dropdownItemButton:hover{
+      background: none;
+      text-decoration: underline;
+ }
+ 
+ .dropdown-menu.active{
+     opacity: 1;
+     visibility: visible;
+     transform: translateY(0);
+     transition: var(--speed) ease;
+ }
+ 
+ .dropdown-menu.inactive {
+     opacity: 0;
+     visibility: hidden;
+     transform: translateY(-20px);
+     transition: var(--speed) ease;
+ }
+ 
+ .imageGallery {
+     margin-top: 0.5%;
+     margin-left: 1.5%;
+      width: 50%;
+      height: 50%;
+      border-radius: 30px;
+      float: left;
+ }
+ 
+ .hyperlink {
+     text-decoration: underline;
+     color: #474a4d;
+     line-height: 33px;
+ }
+ 
+ #h2 {
+     margin-left: 75%;
+     border-radius: 25px;
+     background: #d6faa5;
+     padding: 15px; 
+     width: 250px;
+     height: 35px;
+     line-height: 33px;
+ }
+ 
+ #pro_type{
+     margin-left: 53%;
+     font-weight: bold;
+     line-height: 2px;
+ }
+ 
+ #pro_id {
+     margin-left: 53%;
+     color:#484a4d;
+ }
+ 
+ #p1 {
+     margin-left: 1.8%;
+     display:inline;
+  }
+ 
+ #p1:hover{
+      margin-left: 1.8%;
+      display:inline;
+      text-decoration:underline;
+ }
+ 
+  #p2 {
+     margin-left: 1.8%;
+     display:inline;
+  }
+    
+   .star {
+     font-size: 3vh;
+     cursor: pointer;
+   }
+ 
+   .cartbut {
+     background-color: #ffc700; /* Green */
+     border-radius: 10px;
+     color: rgb(0, 0, 0);
+     padding: 15px;
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+     font-size: 16px;
+     font-weight: bold;
+   }
+ 
+   #prostuff {
+     margin-left: 5%;
+     line-height: 5px;
+   }
+ 
+   #prodisc {
+     margin-left: 5%;
+   }
+ 

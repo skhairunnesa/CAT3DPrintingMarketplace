@@ -5,6 +5,9 @@ require("dotenv").config({ path: "./config/.enviro" });
 const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
+
+const catalogRouter = require('./routes/catalog');
+const productRouter = require('./routes/product');
 // get driver connection
 
 app.listen(port, () => {
@@ -13,3 +16,6 @@ app.listen(port, () => {
 
 require("./routes/auth.js")(app);
 require('./routes/google-oauth.js')(app);
+
+app.use('/catalog', catalogRouter);
+app.use('/product', productRouter);
