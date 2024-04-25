@@ -1,0 +1,60 @@
+.editForm
+{
+    width: 40%;
+    margin-left: 30%;
+}
+
+.editForm > form > input
+{
+    width: 50%;
+}
+
+#seller_picture_display
+{
+    width: 100px;
+}
+
+#seller_summary
+{
+    width: 100%;
+    resize: vertical;
+}
+
+.thumbnailHolder
+{
+    width: 100%;
+}
+
+.thumbnail
+{
+    position: relative;
+    box-sizing: border-box;
+    width: calc(50% - 8px);
+    height: fit-content;
+    min-height: 28px;
+    margin: 2px;
+    padding: 16px;
+    border-radius: 5px;
+    background-color: #FFE699;
+    display: inline-block;
+}
+
+.thumbnail > p
+{
+    padding-right: 12px;
+    width: 70%;
+    text-overflow:ellipsis;
+}
+
+.thumbnail > button
+{
+    position: absolute;
+    height: calc(25%);
+    min-height: 20px;
+
+    margin: 4px;
+    float: right;
+    right:  0px;
+    bottom: 0px;
+    width: 20%;
+}
