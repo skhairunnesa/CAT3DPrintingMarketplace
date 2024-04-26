@@ -169,10 +169,10 @@ function App() {
 
                     <Route
                          path="/product/:productId"
-                         element={<DefaultPageFramework component={<Product />} />} />
+                         element={<BuyerPageFramework component={<Product />} />} />
                     <Route
                          path="/catalog"
-                         element={<DefaultPageFramework component={<Catalog />} />} />
+                         element={<BuyerPageFramework component={<Catalog />} />} />
                     {/**must also include small navbar routing like location editor and message inbox */}
 
                     {/** ROUTING FOR DESIGNER NAVBAR AND SMALLNAVBAR */}
