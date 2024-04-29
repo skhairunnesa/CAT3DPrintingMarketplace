@@ -1,94 +1,23 @@
-.uploadbtn {
-  background-color: #FFC300;
-  color: rgb(12, 12, 12);
-  padding: 12px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-  margin: 50px auto; /* Vertical margin of 50px, horizontal margin auto for centering */
-  display: block; /* Ensures button width is determined by its content */
-}
+.designUploadContainer{
+    display: block;
+    position: relative;
+  }
 
-#link {
-color: rgb(12, 12, 12);
-text-decoration: none; /* Remove default underline */
-}
+  .designImage {
+    width: 99%;
+    height: 150px;
+    opacity: 0.5;
+    z-index: -1;
+    border-radius: 30px;
+    padding: 5px;
+    padding-bottom: 0px;
+    align-items: center;
+  }
 
-/* Button on hover & focus */
-.uploadbtn:hover, .uploadbtn:focus {
-  background-color: #FFC300;
-}
-
-/* Adjusting Navbar styles */
-header .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 1.6rem;
-}
-
-.form-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Ensure the container takes up the full height of the viewport */
-}
-
-.sub-container {
-  width: 400px; /* Adjust the width of the form container */
-  padding: 20px;
-  border: 1px solid #ccc; /* Add border */
-  border-radius: 8px;
-}
-
-.input-container {
-  display: flex;
-  flex-direction: column; /* Align items vertically */
-  align-items: left;
-  text-align: left; /* Align text inside the container to the left */
-}
-
-/* Adjusting margin between form elements */
-.input-container > * {
-  margin-bottom: 10px; /* Add margin between form elements */
-}
-
-/* Making labels bold */
-.input-container label {
-  font-weight: bold;
-}
-
-.create label {
-  display: block;
-  margin-bottom: 8px;
-}
-
-.create input[type="text"],
-.create input[type="number"] {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 16px;
-}
-
-.create input[type="file"] {
-  margin-bottom: 16px;
-}
-
-.create button {
-  display: inline-block;
-  padding: 8px 16px;
-  margin-right: 8px;
-  border: none;
-  background-color: #c6c6b6;
-  color: rgb(15, 13, 13);
-  cursor: pointer;
-}
-
-.create button:last-child {
-  margin-right: 0;
-}
+  .designText {
+    position: absolute;
+    bottom: 10px;
+    left: 50px;
+    font-size: 25px;
+    font-weight: bold;
+  } 
