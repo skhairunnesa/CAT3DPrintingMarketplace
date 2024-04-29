@@ -1,24 +1,22 @@
-import React, { useState } from "react";
-import UploadForm from "./UploadForm"; 
-import "../assets/designUpload.css";
+/// <summary>
+/// Author: Isa Luluquisin
+/// Description: Script formats the design-upload card
+///</summary> 
 
-const DesignUpload = ({ children }) => {
-  // State to track whether the upload button has been clicked
-  const [isUploadClicked, setIsUploadClicked] = useState(false);
+import React from "react";
+import {Link} from 'react-router-dom'
+import "../assets/designUpload.css"
 
+const DesignUpload = ({ image, photoText, designLink }) => {
   return (
     <div className="designUploadContainer">
-        {/* Display the upload button */}
-        {!isUploadClicked && (
-          <button className="uploadbtn" onClick={() => setIsUploadClicked(true)}>
-            {children}
-          </button>
-        )}
-
-        {/* Display the form only when the upload button is clicked */}
-        {isUploadClicked && <UploadForm />}
+      <Link to= {designLink}>
+        <img className="designImage" src={image} alt="" />
+      </Link>
+      <div className="designText">
+        <p>{photoText}</p>
+      </div>
     </div>
   );
-};
-
+}
 export default DesignUpload;
