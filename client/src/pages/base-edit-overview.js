@@ -5,13 +5,15 @@ import { createRoot } from 'react-dom/client';
 import axios from 'axios';
 import e from "cors";
 
+import {APIURL} from '../config.js';
+
 var seller;
 var sellerID;
 var failToLoad = false;
 var hasLoaded = false;
 
-var getUser = "http://localhost:8080/getUserByID?id=";
-var updateUser = "http://localhost:8080/update?id=";
+var getUser = `${APIURL}/getUserByID?id=`;
+var updateUser = `${APIURL}/update?id=`;
 
 const defaultImage = "https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg";
 
@@ -163,7 +165,7 @@ const GetProductsFromID = async() =>
     // connect to database to get seller products from ID
 
     /*
-    await axios.get("http://localhost:8080/getUserByID?id=" + product_ID)
+    await axios.get(`${APIURL}/getUserByID?id=` + product_ID)
     .then(product => outProduct = product.data)
     .catch(err => outProduct = null)
     */

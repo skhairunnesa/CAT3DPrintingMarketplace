@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ReactImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
+import { APIURL } from "../config";
 
 const Product = () => {
 
@@ -23,7 +24,7 @@ const Product = () => {
           body: JSON.stringify({ pageID: { productId }.productId })
      };
 
-     fetch("http://localhost:5000/product", requestOptions).then((response) => response.json()).then((data) => {
+     fetch(`${APIURL}/product`, requestOptions).then((response) => response.json()).then((data) => {
           setStructureInfo(data);
           setDataReceived(true);
           setOptions([data.custom_options[0], data.custom_options[1], data.custom_options[2], data.custom_options[3]]);

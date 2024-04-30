@@ -39,10 +39,12 @@ import './index.css';
 import Product from "./pages/Product";
 import Catalog from "./pages/catalog";
 
+import {APIURL} from './config.js';
+
 function App() {
     const [sellers, setSellers] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:8080/getUsers')
+        axios.get(`${APIURL}/getUsers`)
             .then(sellers => setSellers(sellers.data))
             .catch(err => console.log(err));
     }, []);
@@ -51,7 +53,7 @@ function App() {
 
     const [seller, setSeller] = useState([]);
     useEffect(() => {
-        axios.get("http://localhost:8080/getUserByID?id=" + sellerID)
+        axios.get(`${APIURL}/getUserByID?id=` + sellerID)
             .then(seller => setSeller(seller.data))
             .catch(err => console.log(err));
     }, [sellerID]);

@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import { CatalogPage, Search, Tags, Results, Element, Link, Img, NumResults } from "./../components/catalogElements";
 import SearchBar from './../components/SearchBar';
 
+import {APIURL} from '../config.js';
+
 const Catalog = () => {
     const [query, setQuery] = useState([]);
     const [ numElements, setCount ] = useState(0);
@@ -9,7 +11,7 @@ const Catalog = () => {
     const [results, setResults] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/catalog/", {
+        fetch(`${APIURL}/catalog/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -34,7 +36,7 @@ const Catalog = () => {
     const handleSubmit = async (query) => {
      try {
           setResults([]);
-          fetch("http://localhost:5000/catalog/1", {
+          fetch(`${APIURL}/catalog/1`, {
               method: "POST",
               headers: {
               "Content-Type": "application/json",
@@ -58,7 +60,7 @@ const Catalog = () => {
 const renderElements = () => {
      let content = [];
      let num = results.length;
-     let link = "http://localhost:3000/product/";
+     let link = `${APIURL}/product/`;
      if (num === undefined) {
          content.push(
              <Element>

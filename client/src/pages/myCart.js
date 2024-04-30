@@ -5,6 +5,7 @@
 
 import React, { useState, useEffect }  from "react";
 import CartDropdown from '../components/CartDropdown';
+import { APIURL } from "../config";
 
 const MyCart = () => {
     // Initialize cart state with items from local storage, if available
@@ -19,7 +20,7 @@ const MyCart = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/data');
+            const response = await fetch(`${APIURL}/api/data`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }

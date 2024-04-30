@@ -6,6 +6,9 @@ import axios from "axios";
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import FacebookLogin from '@greatsumini/react-facebook-login';
 
+import {APIURL} from './config.js';
+
+
 function openModal(header, message){
     const modal = document.getElementById("MyModal");
     const modalHeader = document.getElementById("ModalHeader");
@@ -80,7 +83,7 @@ const responseFacebook = async (response) => {
     // Handle Facebook login response here
     console.log(response);
     // Send the Facebook JWT to the server for verification and login
-    axios.post('http://localhost:5000/auth/facebook', {
+    axios.post(`${APIURL}/auth/facebook`, {
         jwt: response.accessToken
     }).then(result => {
         // Handle server response after Facebook OAuth login
@@ -119,7 +122,7 @@ function LoginForm(){
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:5000/auth/login', {email: email, password: password})
+        axios.post(`${APIURL}/auth/login`, {email: email, password: password})
         .then(result => {
             if(result.data.status === "success"){
                 localStorage.setItem("token", JSON.stringify(result.data.token))
@@ -153,7 +156,7 @@ function LoginForm(){
                 <div className="buttonLinkContainer">
                     <GoogleLogin
                         onSuccess={credentialResponse => {
-                            axios.post('http://localhost:5000/oauth/google', {
+                            axios.post(`${APIURL}/oauth/google`, {
                                 oauth:{
                                     jwt: credentialResponse.credential
                                 }
@@ -279,7 +282,7 @@ function CreateSellerForm(){
             openModal(`Account Creation Failed: Passwords Do Not Match`)
         }
         else{
-            axios.post('http://localhost:5000/auth/signup', {type: "seller", firstName:firstName, lastName: lastName, email: email, password: password,
+            axios.post(`${APIURL}/auth/signup`, {type: "seller", firstName:firstName, lastName: lastName, email: email, password: password,
                 country: selectedCountry,
                 seller: {
                     businessName: biz,
@@ -396,7 +399,7 @@ function CreateBuyerForm(){
             openModal(`Account Creation Failed: Passwords Do Not Match`)
         }
         else{
-            axios.post('http://localhost:5000/auth/signup', 
+            axios.post(`${APIURL}/auth/signup`, 
             {type: "buyer",firstName:firstName, lastName: lastName, email: email, password: password, country: selectedCountry,
                 buyer: {
                     interests: [interest],
