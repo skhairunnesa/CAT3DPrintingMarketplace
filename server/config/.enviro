@@ -1,2 +1,3 @@
-ATLAS_URI=mongodb+srv://skhairunnesa:mongodbsamantha@clustercaterpillar.oonlpmo.mongodb.net/cat?retryWrites=true&w=majority&appName=ClusterCaterpillar
+#ATLAS_URI=mongodb+srv://skhairunnesa:mongodbsamantha@clustercaterpillar.oonlpmo.mongodb.net/cat?retryWrites=true&w=majority&appName=ClusterCaterpillar
+ATLAS_URI=mongodb+srv://hpolasani:TBb5lWGzmEjNGzCY@3dcp.v7atcc3.mongodb.net/?retryWrites=true&w=majority&appName=3DCP
 GCID=868741849492-ias2jaeoigl0pls8ji5qlqrmcn2h41c5.apps.googleusercontent.com

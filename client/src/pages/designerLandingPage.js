@@ -19,10 +19,9 @@ const DesignerLandingPage = () => {
     return (
         <div className="SellerLandingPage">
              
-            <DesignUpload 
-                designLink = "/dummyPages/designUploadPage" 
-                photoText = "Upload Your First Design" 
-                image = ""/>
+             <DesignUpload>
+                Upload Designs
+            </DesignUpload>
                 
                 <div className="carousel">
                 <AutoplayCarousel />
