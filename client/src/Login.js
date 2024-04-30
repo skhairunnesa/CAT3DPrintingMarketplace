@@ -8,6 +8,20 @@ import FacebookLogin from '@greatsumini/react-facebook-login';
 
 import {APIURL} from './config.js';
 
+function storeCredsAndRedirect(tokenObj, userObj) {
+    localStorage.setItem("token", JSON.stringify(tokenObj));
+    localStorage.setItem("user", JSON.stringify(userObj));
+    redirectToUserHome(userObj);
+}
+
+function redirectToUserHome(userObj) {
+    if (userObj.type === 'seller' && userObj.seller.subType !== undefined) {
+        window.location.href = `/login/${userObj.seller.subType.toLowerCase()}`;
+    }
+    else {
+        window.location.href = `/login/${userObj.type}`;
+    }
+}
 
 function openModal(header, message){
     const modal = document.getElementById("MyModal");
@@ -106,16 +120,16 @@ function LoginForm(){
     localStorage.removeItem("provider");
 
     if(localStorage.getItem("token")){
-        const user = JSON.parse(localStorage.getItem("user"))
+        const user = JSON.parse(localStorage.getItem("user"));
         //check if there is currently a session token/valid one
-        const token = JSON.parse(localStorage.getItem("token"))
-        if (token && token.expirationDate) {
-            const expirationDate = new Date(token.expirationDate);
+        const token = JSON.parse(localStorage.getItem("token"));
+        if (token && token.expires) {
+            const expirationDate = new Date(token.expires);
             const currentDate = new Date();
             
             if (currentDate < expirationDate) {
                 // Token is still valid
-                nav(`/login/${user.type}`)
+                redirectToUserHome(user);
             } 
         }
     }
@@ -125,14 +139,7 @@ function LoginForm(){
         axios.post(`${APIURL}/auth/login`, {email: email, password: password})
         .then(result => {
             if(result.data.status === "success"){
-                localStorage.setItem("token", JSON.stringify(result.data.token))
-                localStorage.setItem("user", JSON.stringify(result.data.user))
-                if (result.data.user.type === 'seller' && result.data.user.seller.subType !== undefined) {
-                    nav(`/login/${result.data.user.seller.subType.toLowerCase()}`)
-                }
-                else {
-                    nav(`/login/${result.data.user.type}`)
-                }
+                storeCredsAndRedirect(result.data.token, result.data.user);
             }
             else console.log(result.data.reason)
         })
@@ -170,14 +177,7 @@ function LoginForm(){
                                 }
                                 else{
                                     //redirect user dashboard
-                                    localStorage.setItem("token", JSON.stringify(login.data.token))
-                                    localStorage.setItem("user", JSON.stringify(login.data.user))
-                                    if (login.data.user.type === 'seller' && login.data.user.seller.subType !== undefined) {
-                                        nav(`/login/${login.data.user.seller.subType.toLowerCase()}`)
-                                    }
-                                    else {
-                                        nav(`/login/${login.data.user.type}`)
-                                    }
+                                    storeCredsAndRedirect(login.data.token, login.data.user);
                                 }
                             })
                             .catch(err=> openModal("Login Failed",err.response.data.reason))
