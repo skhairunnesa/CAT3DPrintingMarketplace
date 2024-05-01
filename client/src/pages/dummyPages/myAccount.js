@@ -10,6 +10,9 @@ const MyAccount = () => {
             <h1>
                 Insert option to choose between seller and buyer page here!
             </h1>
+            <button onClick={() =>  window.location.href='/sellerPage'}>
+                Seller Page
+                </button>
         </div>
     );
 };

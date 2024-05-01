@@ -1,19 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import '../assets/edit-overview.css';
-import { useState , useEffect} from 'react';
-import { createRoot } from 'react-dom/client';
+import { useEffect} from 'react';
 import axios from 'axios';
-import e from "cors";
-
-import {APIURL} from '../config.js';
 
 var seller;
 var sellerID;
 var failToLoad = false;
 var hasLoaded = false;
 
-var getUser = `${APIURL}/getUserByID?id=`;
-var updateUser = `${APIURL}/update?id=`;
+var getUser = "http://localhost:5000/getUserByID?id=";
+var updateUser = "http://localhost:5000/update?id=";
 
 const defaultImage = "https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg";
 
@@ -21,7 +17,8 @@ const defaultImage = "https://upload.wikimedia.org/wikipedia/commons/a/ac/Defaul
 function BaseEditOverview()
 {
     // Get Current Seller ID
-    sellerID = "660b8c7240b171e3ad709c51";
+    let user = JSON.parse(localStorage.getItem("user"));
+    sellerID = user._id;
     hasLoaded = false;
 
     // Calls the handle data load function once the page loads
@@ -40,22 +37,41 @@ function BaseEditOverview()
         const res = await axios.get(getUser + sellerID)
 
         // Returns and displays the failure message if there was an error with loading
-        if(res.data === null || res.data.name == "CastError")
+        if(res.data === null || res.data.name === "CastError")
         {
             failToLoad = true;
             return;
         }
 
+        console.log(res.data);
+
         // Retrieves data and fills out fields with previous information
-        document.getElementById('seller_website').value = res.data.seller_website;
-        document.getElementById('seller_summary').value = res.data.seller_summary;
-        document.getElementById('seller_name').innerText = res.data.seller_name;
+        document.getElementById('seller_name').innerText = res.data.firstName + " " + res.data.lastName;
+
+        if(!Object.hasOwn(res.data.seller, "seller_website"))
+        {
+            res.data.seller.seller_website = "";
+        }
+
+        document.getElementById('seller_website').value = res.data.seller.seller_website;
+
+        if(!Object.hasOwn(res.data.seller, "seller_summary"))
+        {
+            res.data.seller.seller_summary = "";
+        }
+
+        document.getElementById('seller_summary').value = res.data.seller.seller_summary;
 
         // Retrieves data about the seller's products and displays them to the page
         GetProductsFromID();
 
+        if(!Object.hasOwn(res.data.seller, "seller_partners"))
+        {
+            res.data.seller.seller_partners = [];
+        }
+        
         // Retrieves data about the seller's partners and displays them to the page
-        res.data.seller_partners.forEach(partner_ID => { GetPartnerFromID(partner_ID); });
+        res.data.seller.seller_partners.forEach(partner_ID => { GetPartnerFromID(partner_ID); });
 
         // Sets the seller variable to the retrieved data
         seller = res.data;
@@ -76,6 +92,8 @@ function BaseEditOverview()
                 }
             }
         )
+
+        window.location.href='/edit-overview';
     }
 
     // Error message that gets displayed when a loading failure occurs
@@ -109,14 +127,14 @@ function BaseEditOverview()
 
             <label htmlFor="seller_website">Seller Website:</label><br></br>
             <input type="url" id="seller_website" name="seller_website" 
-            onChange={(e) => seller.seller_website = e.target.value}
+            onChange={(e) => seller.seller.seller_website = e.target.value}
             ></input>
             <br></br>
 
             <label htmlFor="seller_summary">Summary:</label>
             <br></br>
             <textarea id="seller_summary" type="text" name="seller_summary" 
-            onChange={(e) => seller.seller_summary = e.target.value}
+            onChange={(e) => seller.seller.seller_summary = e.target.value}
             ></textarea>
             <br></br>
 
@@ -165,7 +183,7 @@ const GetProductsFromID = async() =>
     // connect to database to get seller products from ID
 
     /*
-    await axios.get(`${APIURL}/getUserByID?id=` + product_ID)
+    await axios.get("http://localhost:8080/getUserByID?id=" + product_ID)
     .then(product => outProduct = product.data)
     .catch(err => outProduct = null)
     */
@@ -210,7 +228,7 @@ function OpenProductEditPage(product_ID)
 const GetPartnerFromID = async(partner_ID) =>
 {
     // Return if the seller id is the same as the seller then remove from list and return
-    if(partner_ID == sellerID) 
+    if(partner_ID === sellerID) 
     {
         RemovePartner(partner_ID);
         return;
@@ -230,9 +248,9 @@ const GetPartnerFromID = async(partner_ID) =>
     }
 
     // If the entered ID is not saved in the seller's infomation then add it to the list in the seller's information
-    if(!seller.seller_partners.includes(partner_ID) && partner_ID !== sellerID)
+    if(!seller.seller.seller_partners.includes(partner_ID) && partner_ID !== sellerID)
     {
-        seller.seller_partners.push(partner_ID);
+        seller.seller.seller_partners.push(partner_ID);
     }
 
     // Assembling the display for the seller thumbnail 
@@ -259,7 +277,7 @@ function AddPartner()
     document.getElementById('partner_name').value = "";
 
     // return if the ID is the same as the seller's or the id is already present in the list
-    if(seller.seller_partners.includes(partnerID) || partnerID == sellerID) { return; }
+    if(seller.seller.seller_partners.includes(partnerID) || partnerID === sellerID) { return; }
     
     GetPartnerFromID(partnerID);
 }
@@ -268,10 +286,10 @@ function AddPartner()
 function RemovePartner(partner_ID)
 {
     // removes the partner from the list
-    const index = seller.seller_partners.indexOf(partner_ID);
+    const index = seller.seller.seller_partners.indexOf(partner_ID);
 
     if (index > -1) {
-        seller.seller_partners.splice(index, 1);
+        seller.seller.seller_partners.splice(index, 1);
     }
 
     // removes the thumbnail if it exists on the page
@@ -285,10 +303,8 @@ function RemovePartner(partner_ID)
 
 const dummyProducts =
 [
-    {product_ID: 1234, product_name : "stuffsssssssssssssssssssssss", product_price : "20"},
-    {product_ID: 213,product_name : "stuff2", product_price : "50"},
-    {product_ID: 123123,product_name : "stuff3", product_price : "12"},
-    {product_ID: 12312312, product_name : "stuff4", product_price : "3"}
+    {product_ID: 1234, product_name : "Modern House Plans", product_price : "$5000"},
+    {product_ID: 213,product_name : "Side Garage Plans", product_price : "$2000"},
 ]
 
 export default BaseEditOverview;
