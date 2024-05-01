@@ -3,6 +3,8 @@ import axios from 'axios';
 import Select from 'react-select';
 import { useNavigate } from 'react-router-dom'; 
 
+import {APIURL} from '../config.js';
+
 function UploadForm() {
   const navigate = useNavigate();
   const [imageFiles, setImageFiles] = useState([]);
@@ -57,7 +59,7 @@ function UploadForm() {
     console.log("upload client",formData)
 
     try {
-      const response = await axios.post('http://localhost:5000/api/files/upload', formData, {
+      const response = await axios.post(`${APIURL}/api/files/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

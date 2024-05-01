@@ -1,5 +1,4 @@
 const {loginOAuth, verifyJwt} = require("../controllers/apple-oauth");
-const User = require('../models/user-model');
 
 module.exports = (app) => {
     app.post("/oauth/apple", async (request, response) => {

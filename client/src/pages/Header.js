@@ -6,14 +6,15 @@ import Seller from '../assets/img/seller.jpg';
 import { createRoot } from 'react-dom/client';
 import axios from 'axios';
 import e from "cors";
+import { APIURL } from '../config';
 
 var seller;
 var sellerID;
 var failToLoad = false;
 var hasLoaded = false;
 
-var getUser = "http://localhost:5000/getUserByID?id=";
-var updateUser = "http://localhost:5000/update?id=";
+var getUser = `${APIURL}/getUserByID?id=`;
+var updateUser = `${APIURL}/update?id=`;
 
 const defaultImage = "https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg";
 
