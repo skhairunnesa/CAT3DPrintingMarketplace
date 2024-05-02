@@ -39,7 +39,7 @@ const Product = () => {
           setStructureInfo(error.message);
           setDataReceived(false);
      });
-    });
+    }, []);
 
     function createDropDown(){
          let items = [];
