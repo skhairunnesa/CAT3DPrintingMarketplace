@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { CatalogPage, Search, Tags, Results, Element, Link, Img, NumResults } from "./../components/catalogElements";
 import SearchBar from './../components/SearchBar';
 
-import {APIURL} from '../config.js';
+import {APIURL, CLIENTURL} from '../config.js';
 
 const Catalog = () => {
     const [query, setQuery] = useState([]);
@@ -60,7 +60,7 @@ const Catalog = () => {
 const renderElements = () => {
      let content = [];
      let num = results.length;
-     let link = `${APIURL}/product/`;
+     let link = `${CLIENTURL}/product/`;
      if (num === undefined) {
          content.push(
              <Element>
