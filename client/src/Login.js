@@ -371,6 +371,7 @@ function CreateSellerForm(){
                 )
             })
             .then(result => {
+                SignOut();
                 navigate("/login")
             })
             .catch(err=> setModal(
@@ -513,6 +514,7 @@ function CreateBuyerForm(){
                 )
             })
             .then(result => {console.log(result)
+                SignOut();
                 navigate("/login")
             })
             .catch(err=> setModal(
