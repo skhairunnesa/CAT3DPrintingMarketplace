@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import FacebookLogin from '@greatsumini/react-facebook-login';
-import { render } from 'react-dom';
 import {APIURL} from './config.js';
 
 function storeCredsAndRedirect(tokenObj, userObj) {
@@ -28,7 +27,7 @@ function Modal({
         modalMessage,
         modalActions}
     ) {
-
+    if (!modalHeader || !modalMessage) return null;
     return(
         <div id={"MyModal"} className="loginModal">
             <div>
@@ -73,7 +72,10 @@ function LoginScreenBase({children}){
     );
 }
 
-
+function SignOut() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+}
 
 function LoginForm(){
     const [email, setEmail] = useState()
@@ -81,8 +83,8 @@ function LoginForm(){
     const nav = useNavigate();
     
     const [thisModal, setThisModal] = useState(null);
-    const closeModal = () => <button onClick={setThisModal(null)}>OK</button>
-    let modal = null;
+    const [modal, setModal] = useState(null);
+    const closeModal = () => <button onClick={()=>setModal(null)}>OK</button>
     useEffect(() => {
         setThisModal(modal);
     }, [modal]);
@@ -101,17 +103,18 @@ function LoginForm(){
             
             if (currentDate < expirationDate) {
                 // Token is still valid
-                modal = 
+                setModal( 
                     <Modal
                         modalHeader="You're already signed in"
                         modalMessage='In order to use another account, you must sign out first.'
                         modalActions={
                             <>
-                                <button onClick={()=>{console.log('sign out')}}>Sign Out</button>
+                                <button onClick={()=>{SignOut(); window.location.reload()}}>Sign Out</button>
                                 <button onClick={()=>redirectToUserHome(user)}>Go to dashboard</button>
                             </>
                         }
                     />
+                )
             } 
         }
     }
@@ -125,7 +128,7 @@ function LoginForm(){
             }
             else console.log(result.data.reason)
         })
-        .catch(err => setThisModal(
+        .catch(err => setModal(
             <Modal
                 modalHeader="Login Failed"
                 modalMessage={err.response.data.reason}
@@ -149,7 +152,7 @@ function LoginForm(){
             if (result.data.status === 'success') {
                 localStorage.setItem('token', JSON.stringify(result.data.token));
             } else {
-                setThisModal(
+                setModal(
                     <Modal
                         modalHeader="Login Failed"
                         modalMessage={result.data.reason}
@@ -158,7 +161,7 @@ function LoginForm(){
                 );
                 
             }
-        }).catch(err => setThisModal(
+        }).catch(err => setModal(
             <Modal
                 modalHeader="Login Failed"
                 modalMessage={err.response.data.reason}
@@ -202,7 +205,7 @@ function LoginForm(){
                                     storeCredsAndRedirect(login.data.token, login.data.user);
                                 }
                             })
-                            .catch(err=> setThisModal(
+                            .catch(err=> setModal(
                                 <Modal
                                     modalHeader="Login Failed"
                                     modalMessage={err.response.data.reason}
@@ -213,7 +216,7 @@ function LoginForm(){
                         }}
                         onError={err => {
                             console.log('Login Failed');
-                            setThisModal(
+                            setModal(
                                 <Modal
                                     modalHeader="Invalid OAuth"
                                     modalMessage={err.response.data.reason}
@@ -249,11 +252,15 @@ function LoginForm(){
 function CreateAccountForm(){
     const [myNav, setNav] = useState(undefined); //default is /SignUp
     const [thisModal, setThisModal] = useState(null);
-    const closeModal = () => <button onClick={setThisModal(null)}>OK</button>
+    const [modal, setModal] = useState(null);
+    const closeModal = () => <button onClick={()=>setModal(null)}>OK</button>
+    useEffect(() => {
+        setThisModal(modal);
+    }, [modal]);
     const nav = useNavigate();
     function handleNav(){
         if(myNav === undefined){
-            setThisModal(
+            setModal(
                 <Modal
                     modalHeader="Invalid Option"
                     modalMessage={'Please select an account type'}
@@ -322,13 +329,17 @@ function CreateSellerForm(){
     const [bin, setBin] = useState();
     const [zip, setZip] = useState();
     const [thisModal, setThisModal] = useState(null);
-    const closeModal = () => <button onClick={setThisModal(null)}>OK</button>
+    const [modal, setModal] = useState(null);
+    const closeModal = () => <button onClick={()=>setModal(null)}>OK</button>
+    useEffect(() => {
+        setThisModal(modal);
+    }, [modal]);
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
         if(password !== password2){
-            setThisModal(
+            setModal(
                 <Modal
                     modalHeader="Account Creation Failed"
                     modalMessage='Passwords Do Not Match'
@@ -356,10 +367,10 @@ function CreateSellerForm(){
             .then(result => {
                 navigate("/login")
             })
-            .catch(err=> setThisModal(
+            .catch(err=> setModal(
                 <Modal
-                    modalHeader="Login Failed"
-                    modalMessage={`Account Creation Failed: ${err.response.data.reason}`}
+                    modalHeader="Account Creation Failed"
+                    modalMessage={err.response.data.reason}
                     modalActions={closeModal()}
                 />
             ))
@@ -378,8 +389,6 @@ function CreateSellerForm(){
     const changeSubType = (e) => {
         setSubType(e.target.value);
     };
-
-    setThisModal(<Modal modalHeader={'asdf'} modalMessage={'asdfsdfafsda'} modalActions={<button>sadf</button>}/>)
 
     return (
         <>
@@ -464,21 +473,22 @@ function CreateBuyerForm(){
     const navigate = useNavigate()
 
     const [thisModal, setThisModal] = useState(null);
-
-    const closeModal = () => {
-        return <button onClick={setThisModal(null)}>OK</button>
-    }
+    const [modal, setModal] = useState(null);
+    const closeModal = () => <button onClick={()=>setModal(null)}>OK</button>
+    useEffect(() => {
+        setThisModal(modal);
+    }, [modal]);
 
     const handleSubmit = (e) => {
         e.preventDefault()
         if(password !== password2){
-            setThisModal(
+            setModal(
                 <Modal
                     modalHeader="Account Creation Failed"
                     modalMessage={`Passwords Do Not Match`}
                     modalActions={closeModal()}
                 />
-            )
+            );
         }
         else{
             axios.post(`${APIURL}/auth/signup`, 
@@ -499,10 +509,10 @@ function CreateBuyerForm(){
             .then(result => {console.log(result)
                 navigate("/login")
             })
-            .catch(err=>setThisModal(
+            .catch(err=> setModal(
                 <Modal
-                    modalHeader="Login Failed"
-                    modalMessage={`Account Creation Failed: ${err.response.data.reason}`}
+                    modalHeader="Account Creation Failed"
+                    modalMessage={err.response.data.reason}
                     modalActions={closeModal()}
                 />
             ))

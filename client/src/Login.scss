@@ -297,6 +297,7 @@ $secondary: whitesmoke;
 
 .loginModal{
     position: fixed;
+    display: flex;
     z-index: 1;
     left: 0;
     top: 0;
