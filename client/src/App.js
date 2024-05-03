@@ -42,21 +42,21 @@ import Catalog from "./pages/catalog";
 import {APIURL} from './config.js';
 
 function App() {
-    const [sellers, setSellers] = useState([]);
+
+    // This block seems like it was used for debugging and never deleted.
+    /*const [sellers, setSellers] = useState([]);
     useEffect(() => {
         axios.get(`${APIURL}/getUsers`)
             .then(sellers => setSellers(sellers.data))
             .catch(err => console.log(err));
     }, []);
-
     const [sellerID, setSellerID] = useState("660322de66ad374e72b6a49e");
-
     const [seller, setSeller] = useState([]);
     useEffect(() => {
         axios.get(`${APIURL}/getUserByID?id=` + sellerID)
             .then(seller => setSeller(seller.data))
             .catch(err => console.log(err));
-    }, [sellerID]);
+    }, [sellerID]);*/
 
 
     return (
