@@ -88,6 +88,10 @@ function LoginForm(){
     useEffect(() => {
         setThisModal(modal);
     }, [modal]);
+    let wa = null;
+    useEffect(() => {
+        setThisModal(wa);
+    }, [wa]);
 
     //removes google credential jwt, and provider at login screen
     localStorage.removeItem("jwt");
@@ -103,7 +107,7 @@ function LoginForm(){
             
             if (currentDate < expirationDate) {
                 // Token is still valid
-                setModal( 
+                wa = (
                     <Modal
                         modalHeader="You're already signed in"
                         modalMessage='In order to use another account, you must sign out first.'
@@ -171,81 +175,83 @@ function LoginForm(){
     };
 
     return(
-        <GoogleOAuthProvider clientId="868741849492-ias2jaeoigl0pls8ji5qlqrmcn2h41c5.apps.googleusercontent.com">
+        <>
             {thisModal}
-            <div className="LoginForm">
-                
-                <div className="InputFields">
-                    <strong>Email</strong>
-                    <input type="email" placeholder="Ex. Example@email.com" onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div className="InputFields">
-                    <strong>Password</strong>
-                    <input type="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)}/>
-                </div>
+            <GoogleOAuthProvider clientId="868741849492-ias2jaeoigl0pls8ji5qlqrmcn2h41c5.apps.googleusercontent.com">
+                <div className="LoginForm">
+                    
+                    <div className="InputFields">
+                        <strong>Email</strong>
+                        <input type="email" placeholder="Ex. Example@email.com" onChange={(e) => setEmail(e.target.value)} />
+                    </div>
+                    <div className="InputFields">
+                        <strong>Password</strong>
+                        <input type="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)}/>
+                    </div>
 
-                <strong>OR</strong>
-                <div className="buttonLinkContainer">
-                    <GoogleLogin
-                        onSuccess={credentialResponse => {
-                            axios.post(`${APIURL}/oauth/google`, {
-                                oauth:{
-                                    jwt: credentialResponse.credential
-                                }
-                            })
-                            .then(login => {
-                                if (login.data.needsSignup === true){
-                                    //logged in
-                                    nav("/SignUp")
-                                    localStorage.setItem('jwt', credentialResponse.credential)
-                                    localStorage.setItem('provider', "google")
-                                }
-                                else{
-                                    //redirect user dashboard
-                                    storeCredsAndRedirect(login.data.token, login.data.user);
-                                }
-                            })
-                            .catch(err=> setModal(
-                                <Modal
-                                    modalHeader="Login Failed"
-                                    modalMessage={err.response.data.reason}
-                                    modalActions={closeModal()}
-                                />
+                    <strong>OR</strong>
+                    <div className="buttonLinkContainer">
+                        <GoogleLogin
+                            onSuccess={credentialResponse => {
+                                axios.post(`${APIURL}/oauth/google`, {
+                                    oauth:{
+                                        jwt: credentialResponse.credential
+                                    }
+                                })
+                                .then(login => {
+                                    if (login.data.needsSignup === true){
+                                        //logged in
+                                        nav("/SignUp")
+                                        localStorage.setItem('jwt', credentialResponse.credential)
+                                        localStorage.setItem('provider', "google")
+                                    }
+                                    else{
+                                        //redirect user dashboard
+                                        storeCredsAndRedirect(login.data.token, login.data.user);
+                                    }
+                                })
+                                .catch(err=> setModal(
+                                    <Modal
+                                        modalHeader="Login Failed"
+                                        modalMessage={err.response.data.reason}
+                                        modalActions={closeModal()}
+                                    />
+                                )
                             )
-                        )
-                        }}
-                        onError={err => {
-                            console.log('Login Failed');
-                            setModal(
-                                <Modal
-                                    modalHeader="Invalid OAuth"
-                                    modalMessage={err.response.data.reason}
-                                    modalActions={closeModal()}
-                                />
-                            )
-                        }}
-                    />
-                    <FacebookLogin
-                        appId="737362851712100"
-                        autoLoad={false}
-                        fields="name,email,picture"
-                        callback={responseFacebook}
-                        style={{
-                            backgroundColor: '#4267b2',
-                            color: '#fff',
-                            fontSize: '16px',
-                            padding: '12px 24px',
-                            border: 'none',
-                            borderRadius: '4px',
-                        }}
-                    />
+                            }}
+                            onError={err => {
+                                console.log('Login Failed');
+                                setModal(
+                                    <Modal
+                                        modalHeader="Invalid OAuth"
+                                        modalMessage={err.response.data.reason}
+                                        modalActions={closeModal()}
+                                    />
+                                )
+                            }}
+                        />
+                        <FacebookLogin
+                            appId="737362851712100"
+                            autoLoad={false}
+                            fields="name,email,picture"
+                            callback={responseFacebook}
+                            style={{
+                                backgroundColor: '#4267b2',
+                                color: '#fff',
+                                fontSize: '16px',
+                                padding: '12px 24px',
+                                border: 'none',
+                                borderRadius: '4px',
+                            }}
+                        />
+                    </div>
+                    <div>
+                        <button onClick={()=>{nav("/SignUp")}}> Create Account</button>
+                        <button onClick={handleSubmit}> Login </button>
+                    </div>
                 </div>
-                <div>
-                    <button onClick={()=>{nav("/SignUp")}}> Create Account</button>
-                    <button onClick={handleSubmit}> Login </button>
-                </div>
-            </div>
-        </GoogleOAuthProvider>
+            </GoogleOAuthProvider>
+        </>
     )
 }
 
@@ -365,6 +371,7 @@ function CreateSellerForm(){
                 )
             })
             .then(result => {
+                SignOut();
                 navigate("/login")
             })
             .catch(err=> setModal(
@@ -507,6 +514,7 @@ function CreateBuyerForm(){
                 )
             })
             .then(result => {console.log(result)
+                SignOut();
                 navigate("/login")
             })
             .catch(err=> setModal(
