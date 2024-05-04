@@ -60,7 +60,7 @@ const Catalog = () => {
 const renderElements = () => {
      let content = [];
      let num = results.length;
-     let link = `${APIURL}/product/`;
+     let link = '/product/';
      if (num === undefined) {
          content.push(
              <Element>
