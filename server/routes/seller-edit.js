@@ -30,10 +30,9 @@ app.get('/getUsers', (req, res) => {
 });
 
 //Get user by ObjectID
-app.get('/getUserByID', async(req, res) => {
-     console.log(req.query.id);
-    await Seller.findOne({seller_id: req.query.id})
-     .then(data => res.json(data))
+app.get('/getUserByID', (req, res) => {
+    Seller.findById(req.query.id)
+    .then(data => res.json(data))
     .catch(error => res.json(error))
 });
 
