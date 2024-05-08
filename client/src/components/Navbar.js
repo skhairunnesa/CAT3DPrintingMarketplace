@@ -60,6 +60,12 @@ export const BuyerNavBar = () => {
                 <NavLink to="/company" activeStyle>
                     Company
                 </NavLink>
+                <NavLink to="/orders" activateStyle>
+                    Orders
+                </NavLink>
+                <NavLink to="/checkout" activateStyle>
+                    Cart 🛒
+                </NavLink>
             </NavMenu>
             <SearchContainer>
                 <SearchInput type="text" placeholder="Search..." />
@@ -182,6 +188,9 @@ export const SmallerBuyerNavBar = () => {
                 </SmallNavLink>
                 <SmallNavLink to="/dummyPages/messagesinbox" activeStyle>
                     Message Inbox
+                </SmallNavLink>
+                <SmallNavLink to="/orders" activeStyle>
+                    Orders
                 </SmallNavLink>
                 <SmallNavLink to="/mycart" activeStyle>
                     <img src={require("../assets/Cart.png")} alt="Cart" height="30"></img>
