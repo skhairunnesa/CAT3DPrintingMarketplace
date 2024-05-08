@@ -5,6 +5,8 @@ import ReactImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import axios from 'axios';
 import { APIURL } from "../config";
+import Rating from "../components/Rating";
+import "../styles/Rating.css";
 
 const Product = () => {
 
@@ -65,7 +67,7 @@ const Product = () => {
           return <button>Text</button>
      }
 
-     const OnOptionClick = (index) => {
+     async function OnOptionClick(index) {
           setPriceIndex(index);
      }
 
@@ -107,14 +109,10 @@ const Product = () => {
                     <p id="pro_id">Product Id: {{ productId }.productId}</p>  
                     <h1 id ="pro_type">Product Type: {structureInfo.structure_type}</h1> 
                     <p1 id="p1">By: {structureInfo.user_id} </p1>            
-               <Link to={`/sellerPage/?id=${structureInfo.user_id}`} component={RedirectButton} class="hyperlink">Click here to see more structures by the creator</Link>
+               <Link to={`/specificSellerPage/${structureInfo.user_id}`} component={RedirectButton} class="hyperlink">Click here to see more structures by the creator</Link>
                <div class="card">
         <h3 id="p2">Rating: </h3>
-        <span class="star">★</span>
-        <span class="star">★</span>
-        <span class="star">★</span>
-        <span class="star">★</span>
-        <span class="star">★</span>
+        <Rating></Rating>
     </div>
              <div className='menu-container'>
                  <div className='menu-trigger' onClick={() => {setOpen(!open) } }>
@@ -126,7 +124,7 @@ const Product = () => {
                      </ul>
                  </div>
              </div>
-             <h1 id = "p2">Price ${price}  </h1>
+             <h1 id = "p2">Price ${structureInfo.price[priceIndex]}  </h1>
              <button className ="cartbut" onClick={onSubmit}>Add to cart</button>
              <h1 id="prostuff">From the Designer:</h1>
              <p id="prodisc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sem libero, fringilla in bibendum ut, iaculis sed nunc. Duis quam nunc, placerat eget maximus et, laoreet quis massa. Duis porta congue hendrerit. Nam condimentum tempus ligula, a sagittis libero. Nullam hendrerit velit ac justo ultrices, quis faucibus nulla vehicula. Morbi ornare mi ac odio suscipit dictum. Aenean vel pellentesque dolor. Suspendisse potenti. Fusce ac sagittis orci. Aenean eget tristique sem. Ut vitae mauris augue.</p>
