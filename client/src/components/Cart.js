@@ -1,29 +1,31 @@
 // Cart.js
-import React from 'react';
+import React, { useEffect } from 'react';
 
 function Cart({ cartItems, removeFromCart, adjustQuantity }) {
-    const handleAdjustQuantity = (item, increment) => {
-        adjustQuantity(item, increment);
+    const [data, setData] = useState([]);
+    const [cartItems, setCartItems] = useState(initialCartItems);
+    const [cartVisible, setCartVisible] = useState(false);
+    const [currentPage, setCurrentPage] = useState('/');
+
+    useEffect(() => {
+        fetchData();
+        const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        setCartItems(storedCartItems);
+    }, []);
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/api/data');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const jsonData = await response.json();
+            setData(jsonData);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
     };
 
-    return (
-        <div>
-            <h2>Shopping Cart</h2>
-            <ul>
-                {cartItems.map(item => (
-                    <li key={item.structure_id}>
-                        ID: {item.structure_id}, Type: {item.structure_type}
-                        <div className="quantity-control">
-                            <button onClick={() => handleAdjustQuantity(item, -1)}>-</button>
-                            <span>{item.quantity}</span>
-                            <button onClick={() => handleAdjustQuantity(item, 1)}>+</button>
-                        </div>
-                        <button onClick={() => removeFromCart(item)}>Remove</button>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
 }
 
 export default Cart;
