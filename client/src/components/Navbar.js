@@ -138,14 +138,8 @@ export const SmallerDefaultNavBar = () => {
                 <SmallNavLink to="/login" activeStyle>
                     Login
                 </SmallNavLink>
-                <SmallNavLink to="/dummyPages/myfavorites" activeStyle>
-                    My Favorites
-                </SmallNavLink>
                 <SmallNavLink to="/location-editor" activeStyle>
                     Location Editor
-                </SmallNavLink>
-                <SmallNavLink to="/message-inbox" activeStyle>
-                    Message Inbox
                 </SmallNavLink>
             </SmallNavMenu>
         </smallNav>
