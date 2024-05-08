@@ -1,0 +1,32 @@
+.button {
+    background-color: #ffc700;
+    color: black;
+    border: none;
+    padding: 15px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  
+  
+  .button:hover {
+    background-color: gray; 
+  }
+  .notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 9999;
+  }
+
+  .pricetag {
+    font-weight: bolder;
+    font-size: xx-large;
+  }

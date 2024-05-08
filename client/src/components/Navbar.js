@@ -183,7 +183,10 @@ export const SmallerBuyerNavBar = () => {
                 <SmallNavLink to="/dummyPages/messagesinbox" activeStyle>
                     Message Inbox
                 </SmallNavLink>
-                <SmallNavLink to="/mycart" activeStyle>
+                <SmallNavLink to="/orders" activeStyle>
+                    Orders
+                </SmallNavLink>
+                <SmallNavLink to="/checkout" activeStyle>
                     <img src={require("../assets/Cart.png")} alt="Cart" height="30"></img>
                 </SmallNavLink>
             </SmallNavMenu>

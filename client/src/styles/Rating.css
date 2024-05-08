@@ -1,0 +1,17 @@
+.rating-container {
+    margin-bottom: 20px;
+}
+
+.stars {
+    font-size: 24px;
+}
+
+.star-filled {
+    color: orange;
+    cursor: pointer;
+}
+
+.star-empty {
+    color: lightgrey;
+    cursor: pointer;
+}

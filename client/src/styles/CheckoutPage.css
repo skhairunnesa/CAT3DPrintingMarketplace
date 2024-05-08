@@ -1,0 +1,22 @@
+
+.checkout-container {
+    justify-content: center;
+     max-width: 45%;
+     margin: 0 auto;
+ }
+ 
+ .cart-item {
+     display: block;
+     border: 1px solid #ccc;
+     padding: 10px;
+     margin-bottom: 10px;
+
+ }
+ 
+ .cart-item p {
+    display: block;
+     margin: 5px 0;
+     margin-left: 0px;
+     max-width: 50%;
+ }
+ 

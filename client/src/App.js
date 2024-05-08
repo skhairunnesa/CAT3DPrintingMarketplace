@@ -30,7 +30,9 @@ import Community from "./pages/community";
 import Support from "./pages/support";
 import MyAccount from "./pages/dummyPages/myAccount";
 import MyFavorites from "./pages/dummyPages/myFavorites";
-import MyCart from "./pages/myCart";
+import CheckoutPage from "./pages/CheckoutPage.js";
+import OrdersPage from "./pages/OrdersPage.js";
+
 
 import EditPage from './pages/base-edit-overview.js';
 import NewSellerPage from './pages/NewSellerPage.js';
@@ -122,10 +124,12 @@ function App() {
                     <Route
                         path="/dummyPages/myFavorites" //Path for it to be added too
                         element={<BuyerPageFramework component={<MyFavorites />} />} />
-                    <Route
-                        path="/myCart" //Path for it to be added to
-                        element={<BuyerPageFramework component={<MyCart />} />} />
-
+                    <Route 
+                        path="/checkout"
+                        element={<BuyerPageFramework component={<CheckoutPage/>}/>}/>
+                    <Route 
+                        path="/orders"
+                        element={<BuyerPageFramework component={<OrdersPage/>}/>}/>
                     <Route
                         path="/structures/:id"
                         element={<Structures />}
