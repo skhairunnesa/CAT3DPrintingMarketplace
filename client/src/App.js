@@ -199,7 +199,6 @@ function App() {
                         element={<SellerPageFramework component={<LinkedSellerPage />} />} />
                 </Routes>
                    {/*<Link to="/edit-overview" className="btn btn-primary"><button>Edit Page</button></Link>*/}
-            {<Link to="/specificSellerPage/:sellerID" className="btn btn-primary"><button>Specific Seller Page</button></Link>}
             </div>
         </Router>
     );
