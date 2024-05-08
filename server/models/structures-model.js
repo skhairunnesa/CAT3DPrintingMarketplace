@@ -9,6 +9,6 @@ const catalogFileSchema = new mongoose.Schema({
   pdfs: [{ type: String }],
 }, { collection: 'Structures', timestamps: true });
 
-const catalogFile = mongoose.model('Structures', catalogFileSchema);
+const catalogFile = mongoose.model('Structures2', catalogFileSchema);
 
 module.exports = catalogFile;

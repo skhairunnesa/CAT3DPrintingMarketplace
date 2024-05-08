@@ -6,7 +6,7 @@ const {
     getStructureById,
     getStructuresByTags,
     getRelatedStructures
-} = require('../controller/structureController')
+} = require('../controllers/structureController')
 
 //@desc GET all structures from db
 //@route  GET /api/structures
