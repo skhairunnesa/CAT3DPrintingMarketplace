@@ -1,0 +1,22 @@
+.header{
+  display: block;
+  position: relative;
+}
+
+.collectionsPhoto {
+  width: 100%;
+  height: 300px;
+  opacity: 0.5;
+  z-index: -1;
+  border-radius: 50px;
+  padding: 30px;
+}
+
+.collectionsText {
+  position: absolute;
+  bottom: 30px;
+  left: 50px;
+  font-size: 32px;
+  font-weight: bold;
+  padding: 10px;
+} 
