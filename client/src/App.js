@@ -33,7 +33,8 @@ import MyFavorites from "./pages/dummyPages/myFavorites";
 import MyCart from "./pages/myCart";
 
 import EditPage from './pages/base-edit-overview.js';
-import SellerPage from './pages/SellerOverview.js';
+import NewSellerPage from './pages/NewSellerPage.js';
+import LinkedSellerPage from "./pages/LinkedSellerPage.js";
 import { CreateAccountForm, CreateBuyerForm, CreateSellerForm, LoginForm, LoginScreenBase, Template } from './Login';
 import './index.css';
 import Product from "./pages/Product";
@@ -42,22 +43,6 @@ import Catalog from "./pages/catalog";
 import {APIURL} from './config.js';
 
 function App() {
-
-    // This block seems like it was used for debugging and never deleted.
-    /*const [sellers, setSellers] = useState([]);
-    useEffect(() => {
-        axios.get(`${APIURL}/getUsers`)
-            .then(sellers => setSellers(sellers.data))
-            .catch(err => console.log(err));
-    }, []);
-    const [sellerID, setSellerID] = useState("660322de66ad374e72b6a49e");
-    const [seller, setSeller] = useState([]);
-    useEffect(() => {
-        axios.get(`${APIURL}/getUserByID?id=` + sellerID)
-            .then(seller => setSeller(seller.data))
-            .catch(err => console.log(err));
-    }, [sellerID]);*/
-
 
     return (
         <Router>
@@ -198,10 +183,19 @@ function App() {
                         element={<DesignerPageFramework component={<MyAccount />} />} />
                     {/**must also include small navbar routing like location editor and message inbox */}
 
-
-                    <Route path="/edit-overview" element={<SellerPageFramework component={<EditPage />} />} />
-                    <Route path="/sellerPage" element={<SellerPageFramework component={<SellerPage />} />} />
+                    {/*SELLER ROUTES*/}
+                    <Route 
+                        path="/edit-overview" 
+                        element={<SellerPageFramework component={<EditPage />} />} />
+                    <Route 
+                        path="/sellerPage" 
+                        element={<SellerPageFramework component={<NewSellerPage />} />} />
+                    <Route 
+                        path="/specificSellerPage/:sellerID" 
+                        element={<SellerPageFramework component={<LinkedSellerPage />} />} />
                 </Routes>
+                   {/*<Link to="/edit-overview" className="btn btn-primary"><button>Edit Page</button></Link>*/}
+            {<Link to="/specificSellerPage/:sellerID" className="btn btn-primary"><button>Specific Seller Page</button></Link>}
             </div>
         </Router>
     );

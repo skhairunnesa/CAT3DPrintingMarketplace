@@ -19,6 +19,7 @@ app.use('/api/files', fileRoutes);
 
 require("./routes/auth.js")(app);
 require('./routes/google-oauth.js')(app);
+require("./routes/seller-edit.js")(app);
 
 app.use('/catalog', catalogRouter);
 app.use('/product', productRouter);
