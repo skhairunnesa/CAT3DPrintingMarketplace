@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ReactImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
+import axios from 'axios';
 import { APIURL } from "../config";
 
 const Product = () => {
@@ -67,6 +68,31 @@ const Product = () => {
      const OnOptionClick = (index) => {
           setPriceIndex(index);
      }
+
+     const onSubmit = () => {
+          //const convertQuantity = parseInt(quantity, 10);
+          //const convertBed = parseInt(bed, 10);
+          //const convertBath = parseInt(bath, 10);
+      
+          const cart = {
+            user_id: 1,
+            designer: 'Placeholder Designer',
+            product_id: 'Placeholder Product',
+            numBed: 2,
+            numBath: 1,
+            q: 3,
+            total_cost: price// * convertQuantity,
+          };
+          console.log(cart);
+      
+          axios.post('http://localhost:5000/addCart/add', cart)
+            .then(res => {
+              console.log(res.data);
+              //setShowNotification(true);
+              //setTimeout(() => setShowNotification(false), 3000); // Hide notification after 3 seconds
+            });
+        }
+
     
      if(!dataReceived)
      {
@@ -101,7 +127,7 @@ const Product = () => {
                  </div>
              </div>
              <h1 id = "p2">Price ${price}  </h1>
-             <button class ="cartbut"><Link to={`/cart?=${price}`} component={RedirectButton}>Add to cart</Link></button>
+             <button className ="cartbut" onClick={onSubmit}>Add to cart</button>
              <h1 id="prostuff">From the Designer:</h1>
              <p id="prodisc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sem libero, fringilla in bibendum ut, iaculis sed nunc. Duis quam nunc, placerat eget maximus et, laoreet quis massa. Duis porta congue hendrerit. Nam condimentum tempus ligula, a sagittis libero. Nullam hendrerit velit ac justo ultrices, quis faucibus nulla vehicula. Morbi ornare mi ac odio suscipit dictum. Aenean vel pellentesque dolor. Suspendisse potenti. Fusce ac sagittis orci. Aenean eget tristique sem. Ut vitae mauris augue.</p>
      </div>
