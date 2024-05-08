@@ -1,0 +1,16 @@
+/* Add this to your CSS file */
+.checkout-container {
+     max-width: 600px;
+     margin: 0 auto;
+ }
+ 
+ .cart-item {
+     border: 1px solid #ccc;
+     padding: 10px;
+     margin-bottom: 10px;
+ }
+ 
+ .cart-item p {
+     margin: 5px 0;
+ }
+ 
